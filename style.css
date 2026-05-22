@@ -1,0 +1,413 @@
+body {
+  margin: 0;
+  height: 100vh;
+  overflow: hidden;
+  background: black;
+  font-family: 'SSFBold', sans-serif;
+}
+
+/* шрифты */
+@font-face {
+  font-family: 'SSFBlack';
+  src: url('fonts/SSFBreakthrough-Black.ttf') format('truetype');
+  font-weight: 900;
+}
+
+@font-face {
+  font-family: 'SSFBold';
+  src: url('fonts/SSFBreakthrough-Bold.ttf') format('truetype');
+  font-weight: 700;
+}
+
+/* фон видео */
+.bg-video {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+
+  z-index: -2;
+  filter: brightness(0.4) contrast(1.1);
+}
+
+/* затемнение */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+
+  background: radial-gradient(
+    circle at center,
+    rgba(0,0,0,0.1),
+    rgba(0,0,0,0.4)
+  );
+
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* ===== ЭКРАНЫ ===== */
+.content,
+.screen {
+  position: absolute;
+  inset: 0;
+
+  transition: opacity 0.8s ease, transform 0.8s ease, filter 0.8s ease;
+  opacity: 1;
+  transform: scale(1);
+}
+
+.hidden {
+  opacity: 0;
+  transform: scale(1.03);
+  filter: blur(6px);
+  pointer-events: none;
+}
+
+/* ===== ЭКРАН 1 ===== */
+.content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  text-align: center;
+  color: white;
+}
+
+.content h1 {
+  font-family: 'SSFBlack', sans-serif;
+  font-size: 90px;
+  margin: 0;
+  letter-spacing: 3px;
+  transform: scaleX(1.08);
+
+  text-shadow:
+    0 0 8px rgba(255,255,255,0.35),
+    0 0 18px rgba(255,255,255,0.25),
+    0 0 30px rgba(255,255,255,0.15);
+}
+
+.content p {
+  font-size: 20px;
+  color: #aaa;
+  margin-top: 8px;
+}
+
+/* кнопка */
+.btn {
+  margin-top: 30px;
+  padding: 12px 28px;
+
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.2);
+
+  color: white;
+  border-radius: 15px;
+  cursor: pointer;
+
+  transition: 0.3s ease;
+  display: inline-block;
+}
+
+.btn:hover {
+  background: rgba(255,255,255,0.35);
+  box-shadow: 0 0 25px rgba(255,255,255,0.3);
+  transform: scale(1.08);
+}
+
+/* ===== ТЕКСТ ПЛАНЕТ ===== */
+.moon-text {
+  position: absolute;
+  top: 80px;
+  left: 80px;
+  max-width: 650px;
+  color: white;
+}
+
+.moon-text h1 {
+  font-size: 60px;
+  font-family: 'SSFBlack', sans-serif;
+  margin: 0;
+
+  text-shadow:
+    0 0 10px rgba(255,255,255,0.3),
+    0 0 20px rgba(255,255,255,0.2);
+}
+
+.moon-text p {
+  margin-top: 20px;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #ddd;
+}
+
+/* ===== ЦИТАТА ===== */
+.quote {
+  position: absolute;
+  right: -450px;
+  top: 120%;
+  max-width: 450px;
+
+  text-align: right;
+  font-size: 16px;
+  color: rgba(255,255,255,0.7);
+
+  line-height: 1.6;
+}
+
+/* ===== ПЛАНЕТЫ ===== */
+.moon {
+  position: absolute;
+  right: -750px;
+  top: 50%;
+  width: 1400px;
+
+  transform: translateY(-50%);
+  animation: rotateMoon 90s linear infinite;
+
+  filter: drop-shadow(0 0 25px rgba(255,255,255,0.2));
+}
+
+@keyframes rotateMoon {
+  from { transform: translateY(-50%) rotate(0deg); }
+  to { transform: translateY(-50%) rotate(360deg); }
+}
+
+/* эффекты */
+.sun {
+  filter: drop-shadow(0 0 40px rgba(255,200,0,0.4)) brightness(1.2);
+}
+
+.earth {
+  filter: drop-shadow(0 0 30px rgba(0,180,255,0.35)) brightness(1.05);
+}
+
+/* ===== НАВИГАЦИЯ ===== */
+.nav {
+  position: absolute;
+  bottom: 40px;
+  left: 40px;
+  display: flex;
+  gap: 20px;
+}
+
+/* стрелки */
+.arrow {
+  background: none;
+  border: none;
+  font-size: 28px;
+  color: rgba(255,255,255,0.4);
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.arrow:hover {
+  color: white;
+  text-shadow: 0 0 18px rgba(255,255,255,0.4);
+  transform: scale(1.15);
+}
+
+.arrow:focus {
+  outline: none;
+}
+
+
+.screen5 .moon-text {
+  position: absolute;
+  top: 80px;          /* сверху */
+  left: 50%;          /* центр по горизонтали */
+  transform: translateX(-50%);
+
+  text-align: center;
+
+  max-width: 800px;   /* шире текст */
+  width: 100%;
+}
+
+
+
+.screen6,
+.screen7,
+.screen8,
+.screen9 {
+    position:absolute;
+    inset:0;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    z-index:10;
+}
+
+/* общий контейнер */
+.letters-container{
+    width:85%;
+    max-width:1200px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center; /* можно flex-start, но центр тоже ок */
+    gap:60px;
+}
+
+/* ===== ЛЕВАЯ ЧАСТЬ ===== */
+
+.letters-left{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    flex-shrink:0;
+}
+
+/* стек фото */
+.photo-stack{
+    position:relative;
+    width:340px;
+    height:470px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+/* карточки */
+.card{
+    position:absolute;
+    inset:0;
+
+    border-radius:35px;
+    overflow:hidden;
+
+    border:2px solid rgba(180,180,180,.25);
+
+    transition:
+        transform .8s ease,
+        opacity .8s ease,
+        box-shadow .5s ease;
+
+    cursor:pointer;
+
+    background:rgba(0,0,0,.2);
+
+     transform: translate(calc(var(--i) * 18px), calc(var(--i) * -12px));
+  z-index: calc(30 - var(--i));
+}
+
+/* картинка внутри */
+.card img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+}
+
+/* стек эффект */
+.card:nth-child(1){
+    z-index:3;
+    transform:translate(0px,0px);
+}
+
+.card:nth-child(2){
+    z-index:2;
+    transform:translate(18px,-12px);
+}
+
+.card:nth-child(3){
+    z-index:1;
+    transform:translate(36px,-24px);
+}
+
+
+/* hover эффект */
+.photo-stack:hover .card:first-child{
+    border-color:rgba(255,255,255,.7);
+    box-shadow:0 0 25px rgba(255,255,255,.25);
+}
+
+/* анимация клика */
+.card.move{
+    transform:translate(120px,-40px) rotate(12deg) scale(.9);
+    opacity:.6;
+}
+
+/* подпись */
+.photo-author{
+    margin-top:25px;
+    color:white;
+    font-size:28px;
+    font-family:'SSFBlack',sans-serif;
+}
+
+/* ===== ПРАВАЯ ЧАСТЬ ===== */
+
+.letters-right{
+    width:520px;
+    max-width:100%;
+    color:white;
+}
+
+.letters-right h1{
+    font-size:60px;
+    margin:0 0 20px;
+    font-family:'SSFBlack';
+    text-shadow:0 0 20px rgba(255,255,255,.25);
+}
+
+.letters-right h2{
+    font-size:30px;
+    margin-bottom:20px;
+}
+
+.letters-right p{
+    font-size:18px;
+    color:#ddd;
+    line-height:1.8;
+}
+
+
+.screen10 {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.final-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+}
+
+.final-photo-frame {
+  width: 360px;
+  height: 500px;
+
+  border-radius: 35px;
+  overflow: hidden;
+
+  border: 2px solid rgba(255,255,255,0.25);
+  box-shadow: 0 0 30px rgba(255,255,255,0.15);
+}
+
+.final-photo-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.final-caption {
+  font-size: 32px;
+  color: white;
+  text-align: center;
+
+  text-shadow: 0 0 25px rgba(255,255,255,0.4);
+  font-family: 'SSFBlack', sans-serif;
+}
+
+.screen10 .nav {
+  position: absolute;
+  bottom: 30px;
+  left: 30px;
+}
